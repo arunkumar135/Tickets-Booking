@@ -1,0 +1,108 @@
+import java.util.*;
+class Train
+{
+    int nofp;
+    String pn[]=new String[nofp];
+    int pa[]=new int[nofp];
+    String TN;
+    int z;
+    static LinkedHashMap<String,Integer> lm=new LinkedHashMap<String,Integer>();
+     
+    Train(String[] pname,int[] page,int n,String tn)
+    {
+        z=0;
+        pn=pname;
+        pa=page;
+        nofp=n;
+        TN=tn;
+        if(lm.containsKey(TN))
+        {
+           z=1; 
+        }
+        else
+        lm.put(TN,50);
+    }
+    public void bookingDetails()
+    {
+        System.out.println("*******************************************************************************");
+        System.out.println("\t\t\tYour Ticket Details");
+        System.out.println("*******************************************************************************");
+        System.out.println("\t\t\tTrain Name: "+TN);
+        System.out.println("--------------------------------------------------------------------------------");
+        System.out.println("\t\t\tPassenger Details");
+        System.out.println("--------------------------------------------------------------------------------");
+        System.out.println("  Passenger Name\t\tPassenger Age\t\tSeat Number");
+        int sea;
+        for(int i=0;i<nofp;i++)
+        {
+    
+            System.out.print("   "+pn[i]);
+            int spa=32-pn[i].length();
+            for(int j=0;j<spa;j++)
+            {
+                System.out.print(" ");
+            }
+            sea=lm.get(TN);
+            System.out.printf("%02d\t\t\t%d\n",pa[i],(51-sea));
+            sea--;
+            lm.put(TN,sea);
+            
+        }
+            System.out.println("--------------------------------------------------------------------------------");
+            System.out.println("Tickets(s) booked Successfully");
+            System.out.println("Seats remaining: "+lm.get(TN));
+            System.out.println(":) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)");
+            System.out.println("\t   Thank you for using the Ticket Reservation System");
+            System.out.println(":) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)");
+        
+    }
+}
+class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner s=new Scanner(System.in);
+        int opt=0,noft=0;
+        String tname;
+        System.out.println("*******************************************************************************");
+        System.out.println("\t\tWelcome to the Railway Ticket Reservation System!");
+        System.out.println("*******************************************************************************");
+        while(true)
+        {
+        System.out.print("\n\n1.Book a Ticket\n2.Exit\nPlease choose an Option: ");
+        opt=s.nextInt();
+        if(opt==2)
+        {
+            System.out.println("Thank you for using Ticket Reservation System.Goodbye!");
+            break;
+        }
+        else if(opt==1)
+        {
+            System.out.print("\nEnter the Train name: ");
+            s.nextLine();
+            tname=s.nextLine();
+            System.out.print("Enter the number of tickets you want to book: ");
+            noft=s.nextInt();
+            String name[]=new String[noft]; //passengers name 
+            int age[]=new int[noft];        //passengers age
+            System.out.println("\nPassenger Details");
+            for(int i=0;i<noft;i++)
+            {
+                System.out.println("\nPassenger "+(i+1)+" Details\n");
+                s.nextLine();
+                System.out.print("Enter Passenger "+(i+1)+" name : ");
+                name[i]=s.nextLine();
+                System.out.print("Enter Passenger "+(i+1)+" age  : ");
+                age[i]=s.nextInt();
+                
+            }
+            Train tr=new Train(name,age,noft,tname); //creating object for Train class
+            tr.bookingDetails();
+
+            
+        }
+        }
+        
+    }
+}
+
