@@ -25,6 +25,10 @@ class Train
     {
         if (lm.containsKey(TN))
         {
+            if(lm.get(TN)==0){
+                System.out.println("Seats are Filled. Tickets are nopt available");
+            }
+            else{
         System.out.println("*******************************************************************************");
         System.out.println("\t\t\tYour Ticket Details");
         System.out.println("*******************************************************************************");
@@ -55,7 +59,7 @@ class Train
             System.out.println(":) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)");
             System.out.println("\t   Thank you for using the Ticket Reservation System");
             System.out.println(":) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)");
-        
+            }
        }
        else{
            System.out.print("\n"+TN.toUpperCase()+" does not exist ");
@@ -99,6 +103,7 @@ class Main
                 age[i]=s.nextInt();
                 
             }
+             System.out.println("\nAvailable Trains:\n1.chennai express\n2.vande bharat express\n3.secunderabad superfast express");
              System.out.print("\nEnter the Train name : ");
              s.nextLine();
             tname=s.nextLine();
