@@ -6,24 +6,25 @@ class Train
     int pa[]=new int[nofp];
     String TN;
     int z;
-    static LinkedHashMap<String,Integer> lm=new LinkedHashMap<String,Integer>();
+    static LinkedHashMap<String,Integer> lm=new LinkedHashMap() {{
+        put("chennai express",50);
+        put("vande bharat",50);
+        put("secunderabad superfast express",50);
+    }};
+    
      
     Train(String[] pname,int[] page,int n,String tn)
     {
-        z=0;
+       
         pn=pname;
         pa=page;
         nofp=n;
         TN=tn;
-        if(lm.containsKey(TN))
-        {
-           z=1; 
-        }
-        else
-        lm.put(TN,50);
     }
     public void bookingDetails()
     {
+        if (lm.containsKey(TN))
+        {
         System.out.println("*******************************************************************************");
         System.out.println("\t\t\tYour Ticket Details");
         System.out.println("*******************************************************************************");
@@ -55,7 +56,12 @@ class Train
             System.out.println("\t   Thank you for using the Ticket Reservation System");
             System.out.println(":) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)");
         
+       }
+       else{
+           System.out.print("\n"+TN.toUpperCase()+" does not exist ");
+       }
     }
+    
 }
 class Main
 {
@@ -78,9 +84,6 @@ class Main
         }
         else if(opt==1)
         {
-            System.out.print("\nEnter the Train name: ");
-            s.nextLine();
-            tname=s.nextLine();
             System.out.print("Enter the number of tickets you want to book: ");
             noft=s.nextInt();
             String name[]=new String[noft]; //passengers name 
@@ -96,6 +99,9 @@ class Main
                 age[i]=s.nextInt();
                 
             }
+             System.out.print("\nEnter the Train name : ");
+             s.nextLine();
+            tname=s.nextLine();
             Train tr=new Train(name,age,noft,tname); //creating object for Train class
             tr.bookingDetails();
 
@@ -105,4 +111,3 @@ class Main
         
     }
 }
-
